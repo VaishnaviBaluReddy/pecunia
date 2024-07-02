@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Literacy</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 1.5em;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .button {
+            width: 100%;
+            padding: 1em 0;
+            font-size: 1.5em;
+            color: black;
+            background-color: white;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #444;
+            color: white;
+        }
+        a {
+            color: #1e90ff;
+            text-decoration: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">Back to Home</a>
+    <div>
+        <h1>Pick Your Knowledge Level</h1>
+        <div class="button-container">
+            <button class="button" onclick="location.href='zero.html'">I Know Nothing</button>
+            <button class="button" onclick="location.href='beginner.html'">Beginner</button>
+            <button class="button" onclick="location.href='intermediate.html'">Intermediate</button>
+            <button class="button" onclick="location.href='advanced.html'">Advanced</button>
+            <button class="button" onclick="location.href='financeBros.html'">Finance Enthusiast</button>
+        </div>
+    </div>
+</body>
+</html>

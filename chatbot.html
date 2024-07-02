@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot - Pecunia</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Courier New', sans-serif;
+            padding: 60px;
+            margin: 0;
+            line-height: 0.25;
+            overflow-y: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .container {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 20px; /* Ensure space for input box */
+        }
+        .messages {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px;
+        }
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            max-width: 70%; /* Limit width to avoid stretching */
+        }
+        .user-message {
+            text-align: right;
+            margin-left: auto; /* Push to the right */
+        }
+        .bot-message {
+            text-align: left;
+            margin-right: auto; /* Push to the left */
+        }
+        .input-box-container {
+            margin-top: auto; /* Push input box container to the bottom 3/4th part */
+            padding: 0 20px;
+            align-self: center; /* Center input box horizontally */
+            width: 100%; /* Full width */
+            max-width: 600px; /* Limit max width for better readability */
+            position: relative; /* Position relative for absolute positioning */
+        }
+        .input-prompt {
+            position: absolute;
+            top: -30px; /* Adjust as needed to position above input */
+            left: 20px;
+            font-size: 1.2em;
+        }
+        .input-box {
+            width: 100%;
+            padding: 10px;
+            font-size: 1.2em;
+            border: none;
+            background-color: transparent;
+            color: white;
+            border-bottom: 100px solid black;
+            outline: none;
+        }
+        .output-box {
+            width: 100%;
+            max-width: 70%; /* Limit width to avoid stretching */
+            padding: 10px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="chatbox">
+        <div class="messages" id="message-container">
+            <div class="message bot-message">
+                <p>Hello! How can I assist you today?</p>
+            </div>
+        </div>
+    </div>
+    <div class="input-box-container">
+        <input type="text" id="userInput" class="input-box" placeholder="Type a message..." onkeydown="if(event.key === 'Enter') sendMessage()">
+    </div>
+    
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const userMessage = userInput.value.trim();
+
+            if (userMessage === '') return;
+
+            const messageContainer = document.getElementById('message-container');
+
+            const userMessageElement = document.createElement('div');
+            userMessageElement.classList.add('message', 'user-message', 'output-box');
+            userMessageElement.innerHTML = `<p>> ${userMessage}</p>`;
+            messageContainer.appendChild(userMessageElement);
+
+            userInput.value = '';
+            userInput.focus();
+
+            setTimeout(() => {
+                const response = getBotResponse(userMessage);
+                const botMessageElement = document.createElement('div');
+                botMessageElement.classList.add('message', 'bot-message', 'output-box');
+                botMessageElement.innerHTML = `<p>${response}</p>`;
+                messageContainer.appendChild(botMessageElement);
+
+                // Scroll to bottom of chat
+                chatbox.scrollTo({
+                        top: chatbox.scrollHeight,
+                        behavior: 'smooth'
+                    });
+            }, 500); // Simulate processing delay
+        }
+
+        function getBotResponse(message) {
+            if (message.toLowerCase().includes('stock')) {
+                return 'Here are the current stock market trends... (dummy data)';
+            } else if (message.toLowerCase().includes('finance')) {
+                return 'Financial literacy is about managing your money...';
+            } else {
+                return 'I am not sure how to answer that. Please ask about finance or stocks.';
+            }
+        }
+    </script>
+</body>
+</html>
