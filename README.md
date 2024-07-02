@@ -1,4 +1,5 @@
 # pecunia
+pecunia-nws5.netlify.app
 The solution for when you feel lost about money
 
 Pecunia is an intuitive and interactive website designed to enhance your financial literacy and provide real-time insights into the stock market. The platform features two main sections:
